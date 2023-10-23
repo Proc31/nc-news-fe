@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Article({ article }) {
 	const [selectedArticle, setSelectedArticle] = useState({});
@@ -9,10 +10,12 @@ export default function Article({ article }) {
 
 	return (
 		<div>
-			{selectedArticle.title}
+			<Link to="/article" state={{ selectedArticle }}>
+				{selectedArticle.title}
+			</Link>
+			<br></br>
 			{selectedArticle.topic}
 			{selectedArticle.author}
-			{selectedArticle.body}
 			{selectedArticle.created_at}
 			{selectedArticle.votes}
 			{selectedArticle.comment_count}

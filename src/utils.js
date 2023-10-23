@@ -10,4 +10,17 @@ export function getArticles() {
 	});
 }
 
-//Comment to force change
+export function getArticleBody(article) {
+	const article_id = article.article_id;
+	return api.get(`./articles/${article_id}`).then((response) => {
+		return response.data.article;
+	});
+}
+
+export function getComments(article) {
+	const article_id = article.article_id;
+	return api.get(`./articles/${article_id}/comments`).then((response) => {
+		return response.data.comments;
+	});
+}
+

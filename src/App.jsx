@@ -6,6 +6,7 @@ import Articles from './components/Articles';
 import Topics from './components/Topics';
 import Profile from './components/Profile';
 import Users from './components/Users';
+import ArticleContents from './components/ArticleContents';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState({});
@@ -16,6 +17,7 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Articles />} />
+				<Route path="/article" element={<ArticleContents />} />
 				<Route path="/topics" element={<Topics />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/users" element={<Users />} />
