@@ -2,8 +2,6 @@ import { useState } from 'react';
 import ArticleList from './Lists/ArticleList';
 
 export default function Articles() {
-	const [articles, setArticles] = useState([]);
-
 	return (
 		<div>
 			<div>
