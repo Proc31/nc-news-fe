@@ -1,23 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getComments, postComment } from '../../utils';
 import Comment from './list-items/Comment';
 
 export default function CommentList({ selectedArticle, currentUser }) {
 	const [commentList, setCommentList] = useState([]);
 
-	getComments(selectedArticle).then((response) => {
-		setCommentList(response);
-	});
+	useEffect(() => {
+		getComments(selectedArticle).then((response) => {
+			setCommentList(response);
+		});
+	}, []);
 
 	function addComment(e) {
 		e.preventDefault();
 		const body = e.target[0].value;
 		postComment(body, selectedArticle, currentUser).then(() => {
 			getComments(selectedArticle).then((response) => {
-				setCommentList(() => [...response]);
+				setCommentList(response);
 			});
 		});
 	}
+
+	const comments = commentList.map((comment, index) => {
+		return (
+			<li key={comment.comment_id}>
+				<Comment comment={comment} />
+			</li>
+		);
+	});
 
 	return (
 		<div>
@@ -25,15 +35,7 @@ export default function CommentList({ selectedArticle, currentUser }) {
 				<textarea type="text" name="name" />
 				<input type="submit" value="Submit" />
 			</form>
-			<ol>
-				{commentList.map((comment, index) => {
-					return (
-						<li key={comment + index}>
-							<Comment comment={comment} />
-						</li>
-					);
-				})}
-			</ol>
+			<ol>{comments}</ol>
 		</div>
 	);
 }
