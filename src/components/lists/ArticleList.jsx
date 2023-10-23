@@ -10,8 +10,6 @@ export default function ArticleList() {
 		});
 	}, []);
 
-	console.log('Articlelist =', articleList);
-
 	return (
 		<ol>
 			{articleList.map((article, index) => {
