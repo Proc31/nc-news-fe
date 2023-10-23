@@ -9,7 +9,7 @@ export default function ArticleContents() {
 
 	useEffect(() => {
 		getArticleBody(selectedArticle).then((response) => {
-			setBody(response.body);
+			setBody(response);
 		});
 	});
 

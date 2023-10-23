@@ -13,7 +13,7 @@ export function getArticles() {
 export function getArticleBody(article) {
 	const article_id = article.article_id;
 	return api.get(`./articles/${article_id}`).then((response) => {
-		return response.data.article;
+		return response.data.article.body;
 	});
 }
 
