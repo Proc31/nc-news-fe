@@ -24,6 +24,19 @@ export function getComments(article) {
 	});
 }
 
+export function postComment(body, article, user) {
+	const article_id = article.article_id;
+	const comment = {
+		username: user.username,
+		body: body,
+	};
+	return api
+		.post(`articles/${article_id}/comments`, comment)
+		.then((response) => {
+			return response.data.comment;
+		});
+}
+
 export function incrementVote(num, article) {
 	const article_id = article.article_id;
 	const voteChange = {

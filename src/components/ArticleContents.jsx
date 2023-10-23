@@ -1,22 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CommentList from './lists/CommentList';
 import { useLocation } from 'react-router-dom';
 import { getArticleBody } from '../utils';
+import Article from './Lists/list-items/Article';
 
-export default function ArticleContents() {
+export default function ArticleContents({ currentUser }) {
 	const selectedArticle = useLocation().state.selectedArticle;
 	const [body, setBody] = useState('');
 
-	useEffect(() => {
-		getArticleBody(selectedArticle).then((response) => {
-			setBody(response);
-		});
+	getArticleBody(selectedArticle).then((response) => {
+		setBody(response);
 	});
 
 	return (
 		<div>
+			<Article article={selectedArticle} />
 			{body}
-			<CommentList selectedArticle={selectedArticle} />
+			<CommentList
+				selectedArticle={selectedArticle}
+				currentUser={currentUser}
+			/>
 		</div>
 	);
 }
