@@ -24,3 +24,10 @@ export function getComments(article) {
 	});
 }
 
+export function incrementVote(num, article) {
+	const article_id = article.article_id;
+	const voteChange = {
+		inc_votes: num,
+	};
+	return api.patch(`/articles/${article_id}`, voteChange);
+}
