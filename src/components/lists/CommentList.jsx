@@ -23,7 +23,7 @@ export default function CommentList({ selectedArticle, currentUser }) {
 			});
 	}
 
-	const comments = commentList.map((comment, index) => {
+	const comments = commentList.map((comment) => {
 		return (
 			<li key={comment.comment_id}>
 				<Comment comment={comment} />
