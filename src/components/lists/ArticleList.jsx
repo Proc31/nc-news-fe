@@ -1,7 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Article from './list-items/Article';
 import { getArticles } from '../../utils';
-import { useParams } from 'react-router-dom';
 
 export default function ArticleList({ topic }) {
 	const [articleList, setArticleList] = useState([]);
