@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Article from './list-items/Article';
 import { getArticles } from '../../utils';
+import Stack from '@mui/material/Stack';
 
 export default function ArticleList({ topic }) {
 	const [articleList, setArticleList] = useState([]);
@@ -13,11 +14,15 @@ export default function ArticleList({ topic }) {
 
 	const articles = articleList.map((article) => {
 		return (
-			<li key={article.article_id}>
+			<div key={article.article_id}>
 				<Article article={article} />
-			</li>
+			</div>
 		);
 	});
 
-	return <ol>{articles}</ol>;
+	return (
+		<Stack spacing={4} alignItems="stretch" m={4}>
+			{articles}
+		</Stack>
+	);
 }
