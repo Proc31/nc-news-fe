@@ -14,11 +14,13 @@ export default function CommentList({ selectedArticle, currentUser }) {
 	function addComment(e) {
 		e.preventDefault();
 		const body = e.target[0].value;
-		postComment(body, selectedArticle, currentUser).then(() => {
-			getComments(selectedArticle).then((response) => {
+		postComment(body, selectedArticle, currentUser)
+			.then(() => {
+				return getComments(selectedArticle);
+			})
+			.then((response) => {
 				setCommentList(response);
 			});
-		});
 	}
 
 	const comments = commentList.map((comment, index) => {
