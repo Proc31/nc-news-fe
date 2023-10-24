@@ -1,24 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Article from './list-items/Article';
 import { getArticles } from '../../utils';
+import { useParams } from 'react-router-dom';
 
-export default function ArticleList() {
+export default function ArticleList({ topic }) {
 	const [articleList, setArticleList] = useState([]);
+
 	useEffect(() => {
-		getArticles().then((response) => {
+		getArticles(topic).then((response) => {
 			setArticleList(response);
 		});
-	}, []);
+	}, [topic]);
+
+	const articles = articleList.map((article) => {
+		return (
+			<li key={article.article_id}>
+				<Article article={article} />
+			</li>
+		);
+	});
 
 	return (
-		<ol>
-			{articleList.map((article, index) => {
-				return (
-					<li key={article + index}>
-						<Article article={article} />
-					</li>
-				);
-			})}
-		</ol>
+		<div>
+			<ol>{articles}</ol>
+		</div>
 	);
+}
+
+function setParams() {
+	const topic = useParams().topic;
+	return useMemo(() => {
+		return topic;
+	});
 }

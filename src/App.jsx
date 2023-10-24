@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Articles from './components/Articles';
@@ -21,7 +22,12 @@ function App() {
 			<h1>NC-News</h1>
 			<Navbar />
 			<Routes>
-				<Route path="/" element={<Articles />} />
+				<Route
+					path="/"
+					element={<Navigate to="/articles" replace={true} />}
+				></Route>
+				<Route path="/articles" element={<Articles />} />
+				<Route path="/articles/:topic" element={<Articles />} />
 				<Route
 					path="/article"
 					element={<ArticleContents currentUser={currentUser} />}
