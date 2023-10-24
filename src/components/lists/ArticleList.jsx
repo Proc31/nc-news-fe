@@ -26,10 +26,3 @@ export default function ArticleList({ topic }) {
 		</div>
 	);
 }
-
-function setParams() {
-	const topic = useParams().topic;
-	return useMemo(() => {
-		return topic;
-	});
-}
