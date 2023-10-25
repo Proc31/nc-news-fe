@@ -3,14 +3,14 @@ import Article from './list-items/Article';
 import { getArticles } from '../../utils';
 import Stack from '@mui/material/Stack';
 
-export default function ArticleList({ topic }) {
+export default function ArticleList({ topic, searchParams }) {
 	const [articleList, setArticleList] = useState([]);
 
 	useEffect(() => {
-		getArticles(topic).then((response) => {
+		getArticles(topic, searchParams).then((response) => {
 			setArticleList(response);
 		});
-	}, [topic]);
+	}, [topic, searchParams]);
 
 	const articles = articleList.map((article) => {
 		return (

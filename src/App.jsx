@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useSearchParams } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Articles from './components/Articles';
 import Topics from './components/Topics';
@@ -15,6 +14,7 @@ function App() {
 		avatar_url:
 			'https://vignette.wikia.nocookie.net/mrmen/images/7/7e/MrMen-Bump.png/revision/latest?cb=20180123225553',
 	});
+	let [searchParams, setSearchParams] = useSearchParams();
 
 	return (
 		<div>
@@ -24,8 +24,24 @@ function App() {
 					path="/"
 					element={<Navigate to="/articles" replace={true} />}
 				></Route>
-				<Route path="/articles" element={<Articles />} />
-				<Route path="/articles/:topic" element={<Articles />} />
+				<Route
+					path="/articles"
+					element={
+						<Articles
+							searchParams={searchParams}
+							setSearchParams={setSearchParams}
+						/>
+					}
+				/>
+				<Route
+					path="/articles/:topic"
+					element={
+						<Articles
+							searchParams={searchParams}
+							setSearchParams={setSearchParams}
+						/>
+					}
+				/>
 				<Route
 					path="/article"
 					element={<ArticleContents currentUser={currentUser} />}
