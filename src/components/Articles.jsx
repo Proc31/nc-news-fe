@@ -4,6 +4,8 @@ import ArticleList from './Lists/ArticleList';
 import { getTopics } from '../utils';
 import TopicSelect from './page-items/TopicSelect';
 import { useParams } from 'react-router-dom';
+import { AppBar, Box, Typography } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
 
 export default function Articles() {
 	const [topics, setTopics] = useState([]);
@@ -17,15 +19,26 @@ export default function Articles() {
 	}, []);
 
 	return (
-		<div>
-			<div>
-				<h2>Articles</h2>
+		<>
+			<Toolbar
+				disableGutters
+				sx={{
+					display: { xs: 'flex' },
+					flexDirection: 'row',
+					justifyContent: 'start',
+					gap: '37.5%',
+				}}
+			>
 				<TopicSelect topics={topics} />
-			</div>
+				<Typography sx={{ color: 'black', fontSize: 40 }}>
+					Articles
+				</Typography>
+				<TopicSelect topics={topics} />
+			</Toolbar>
 			<ArticleList topic={topic} />
 			<div>
 				<h2>Footer</h2>
 			</div>
-		</div>
+		</>
 	);
 }
