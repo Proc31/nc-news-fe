@@ -73,6 +73,7 @@ export default function SortSelect({ setSearchParams, searchParams }) {
 		setAnchorEl(null);
 	};
 
+	//Refactor this, works but bad logic
 	function buttonContent(type, buttonId) {
 		const selectedSort = searchParams.get('sort_by');
 		const selectedOrder = searchParams.get('order');
