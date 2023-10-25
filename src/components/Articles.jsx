@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
-
 import ArticleList from './Lists/ArticleList';
 import { getTopics } from '../utils';
 import TopicSelect from './page-items/TopicSelect';
-import { useParams } from 'react-router-dom';
-import { AppBar, Box, Typography } from '@mui/material';
+import SortSelect from './page-items/SortSelect';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { Typography } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 
-export default function Articles() {
+export default function Articles({ searchParams, setSearchParams }) {
 	const [topics, setTopics] = useState([]);
-
 	const topic = useParams().topic;
 
 	useEffect(() => {
+		setSearchParams({
+			order: 'desc',
+			sort_by: 'created_at',
+		});
 		getTopics().then((response) => {
 			setTopics(response);
 		});
@@ -26,16 +29,23 @@ export default function Articles() {
 					display: { xs: 'flex' },
 					flexDirection: 'row',
 					justifyContent: 'start',
-					gap: '37.5%',
+					gap: '30%',
 				}}
 			>
-				<TopicSelect topics={topics} />
+				<TopicSelect searchParams={searchParams} topics={topics} />
 				<Typography sx={{ color: 'black', fontSize: 40 }}>
 					Articles
 				</Typography>
-				<TopicSelect topics={topics} />
+				<SortSelect
+					searchParams={searchParams}
+					setSearchParams={setSearchParams}
+				/>
 			</Toolbar>
-			<ArticleList topic={topic} />
+			<ArticleList
+				searchParams={searchParams}
+				setSearchParams={setSearchParams}
+				topic={topic}
+			/>
 			<div>
 				<h2>Footer</h2>
 			</div>

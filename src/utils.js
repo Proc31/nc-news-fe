@@ -4,8 +4,12 @@ const api = axios.create({
 	baseURL: 'https://nc-news-ej32.onrender.com/api',
 });
 
-export function getArticles(topic) {
-	const params = { topic: topic };
+export function getArticles(topic, searchParams) {
+	const params = {
+		topic: topic,
+		order: searchParams.get('order'),
+		sort_by: searchParams.get('sort_by'),
+	};
 	return api.get('./articles', { params }).then((response) => {
 		return response.data.articles;
 	});
