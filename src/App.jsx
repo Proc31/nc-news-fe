@@ -18,8 +18,7 @@ function App() {
 
 	return (
 		<div>
-			<h1>NC-News</h1>
-			<Navbar />
+			<Navbar currentUser={currentUser} />
 			<Routes>
 				<Route
 					path="/"
