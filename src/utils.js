@@ -51,3 +51,9 @@ export function incrementVote(num, article) {
 	};
 	return api.patch(`/articles/${article_id}`, voteChange);
 }
+
+
+export function formatTime (dateString) {
+	const options = { year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric' };
+	return new Date(dateString).toLocaleDateString('en-GB', options);
+};
