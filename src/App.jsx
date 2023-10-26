@@ -43,7 +43,7 @@ function App() {
 					}
 				/>
 				<Route
-					path="/article"
+					path="/article/:article_id"
 					element={<ArticleContents currentUser={currentUser} />}
 				/>
 				<Route path="/topics" element={<Topics />} />
