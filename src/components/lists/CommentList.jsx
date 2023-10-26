@@ -85,7 +85,7 @@ export default function CommentList({ currentUser, selectedArticle }) {
 			</Alert>
 			<Alert
 				onClose={() => {
-					setSucessComment(false);
+					setSuccessDelete(false);
 				}}
 				severity="success"
 				sx={{
