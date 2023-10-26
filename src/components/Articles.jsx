@@ -3,9 +3,8 @@ import ArticleList from './Lists/ArticleList';
 import { getTopics } from '../utils';
 import TopicSelect from './page-items/TopicSelect';
 import SortSelect from './page-items/SortSelect';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
+import { useParams } from 'react-router-dom';
+import { Typography, Toolbar } from '@mui/material';
 
 export default function Articles({ searchParams, setSearchParams }) {
 	const [topics, setTopics] = useState([]);

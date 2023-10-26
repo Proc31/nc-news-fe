@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import { Avatar } from '@mui/material';
+import {
+	Avatar,
+	IconButton,
+	Typography,
+	Toolbar,
+	Box,
+	AppBar,
+} from '@mui/material';
 
 export default function Navbar({ currentUser }) {
 	return (

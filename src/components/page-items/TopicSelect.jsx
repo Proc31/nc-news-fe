@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useNavigate } from 'react-router-dom';
 

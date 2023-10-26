@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { formatTime, incrementVote } from '../../../utils';
-import { IconButton } from '@mui/material';
-import { Typography } from '@mui/material';
-import { Box } from '@mui/material';
+import { IconButton, Typography, Box } from '@mui/material';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 

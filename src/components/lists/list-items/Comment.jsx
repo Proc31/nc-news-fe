@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-	deleteComment,
-	formatTime,
-	incrementCommentVote,
-} from '../../../utils';
+import { formatTime, incrementCommentVote } from '../../../utils';
 import { IconButton, Tooltip, Typography, Box } from '@mui/material';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
