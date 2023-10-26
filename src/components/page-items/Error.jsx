@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material';
-import { getUrlArray } from '../utils';
+import { getUrlArray } from '../../utils';
 
 export default function Error() {
 	let content = 'Page not found!';

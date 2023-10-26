@@ -97,7 +97,6 @@ export default function Article({ article }) {
 						display: 'flex',
 						gridColumn: '2',
 						gridRow: '3',
-						alignItems: 'start',
 						justifyContent: 'start',
 						alignItems: 'end',
 					}}

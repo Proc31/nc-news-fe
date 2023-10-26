@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ArticleList from './Lists/ArticleList';
-import Error from './Error';
+import Error from './page-items/Error';
 import { getTopics } from '../utils';
 import TopicSelect from './page-items/TopicSelect';
 import SortSelect from './page-items/SortSelect';

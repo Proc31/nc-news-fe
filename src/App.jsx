@@ -5,7 +5,7 @@ import Articles from './components/Articles';
 import Topics from './components/Topics';
 import Profile from './components/Profile';
 import Users from './components/Users';
-import Error from './components/Error';
+import Error from './components/page-items/Error';
 import ArticleContents from './components/ArticleContents';
 
 function App() {
