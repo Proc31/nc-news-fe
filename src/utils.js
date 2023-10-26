@@ -73,4 +73,8 @@ export function formatTime (dateString) {
 	return new Date(dateString).toLocaleDateString('en-GB', options);
 };
 
+export function getUrlArray() {
+	const regex = /([\w-]+)/g;
+	return window.location.pathname.match(regex);
+}
 

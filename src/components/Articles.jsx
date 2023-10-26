@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ArticleList from './Lists/ArticleList';
+import Error from './Error';
 import { getTopics } from '../utils';
 import TopicSelect from './page-items/TopicSelect';
 import SortSelect from './page-items/SortSelect';
@@ -20,34 +21,42 @@ export default function Articles({ searchParams, setSearchParams }) {
 		});
 	}, []);
 
-	return (
-		<>
-			<Toolbar
-				disableGutters
-				sx={{
-					display: { xs: 'flex' },
-					flexDirection: 'row',
-					justifyContent: 'start',
-					gap: '30%',
-				}}
-			>
-				<TopicSelect searchParams={searchParams} topics={topics} />
-				<Typography sx={{ color: 'black', fontSize: 40 }}>
-					Articles
-				</Typography>
-				<SortSelect
+	const error = topics.some((sel) => {
+		return sel.slug === topic || !topic;
+	});
+
+	if (!error) {
+		return <Error />;
+	} else {
+		return (
+			<>
+				<Toolbar
+					disableGutters
+					sx={{
+						display: { xs: 'flex' },
+						flexDirection: 'row',
+						justifyContent: 'start',
+						gap: '30%',
+					}}
+				>
+					<TopicSelect searchParams={searchParams} topics={topics} />
+					<Typography sx={{ color: 'black', fontSize: 40 }}>
+						Articles
+					</Typography>
+					<SortSelect
+						searchParams={searchParams}
+						setSearchParams={setSearchParams}
+					/>
+				</Toolbar>
+				<ArticleList
 					searchParams={searchParams}
 					setSearchParams={setSearchParams}
+					topic={topic}
 				/>
-			</Toolbar>
-			<ArticleList
-				searchParams={searchParams}
-				setSearchParams={setSearchParams}
-				topic={topic}
-			/>
-			<div>
-				<h2>Footer</h2>
-			</div>
-		</>
-	);
+				<div>
+					<h2>Footer</h2>
+				</div>
+			</>
+		);
+	}
 }
