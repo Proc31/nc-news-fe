@@ -2,12 +2,24 @@ import { useState, useEffect } from 'react';
 import { getComments, postComment, deleteComment } from '../../utils';
 import Comment from './list-items/Comment';
 import { useParams } from 'react-router-dom';
-import { Box, Stack, TextField, Button } from '@mui/material';
+import {
+	Box,
+	Stack,
+	TextField,
+	Button,
+	IconButton,
+	Tooltip,
+	Alert,
+} from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export default function CommentList({ currentUser, selectedArticle }) {
 	const article_id = useParams().article_id;
 	const [commentList, setCommentList] = useState([]);
 	const [comment, setComment] = useState('');
+	const [error, setError] = useState(false);
+	const [successComment, setSucessComment] = useState(false);
+	const [successDelete, setSuccessDelete] = useState(false);
 
 	useEffect(() => {
 		getComments(article_id).then((response) => {
@@ -16,22 +28,26 @@ export default function CommentList({ currentUser, selectedArticle }) {
 	}, []);
 
 	function addComment() {
-		postComment(comment, selectedArticle, currentUser)
-			.then(() => {
-				return getComments(article_id);
-			})
-			.then((response) => {
-				setCommentList(response);
-			});
-	}
-
-	function buildComment(e) {
-		setComment(e.target.value);
+		if (comment.length > 2) {
+			postComment(comment, selectedArticle, currentUser)
+				.then(() => {
+					setComment('');
+					setError(false);
+					setSucessComment(true);
+					return getComments(article_id);
+				})
+				.then((response) => {
+					setCommentList(response);
+				});
+		} else {
+			setError(true);
+		}
 	}
 
 	function handleDelete(comment) {
 		deleteComment(comment)
 			.then(() => {
+				setSuccessDelete(true);
 				return getComments(article_id);
 			})
 			.then((response) => {
@@ -53,6 +69,34 @@ export default function CommentList({ currentUser, selectedArticle }) {
 
 	return (
 		<>
+			<Alert
+				onClose={() => {
+					setSucessComment(false);
+				}}
+				severity="success"
+				sx={{
+					position: 'fixed',
+					visibility: successComment ? 'visable' : 'hidden',
+					bottom: (theme) => theme.spacing(5),
+					left: (theme) => theme.spacing(50),
+				}}
+			>
+				Comment Submitted!
+			</Alert>
+			<Alert
+				onClose={() => {
+					setSucessComment(false);
+				}}
+				severity="success"
+				sx={{
+					position: 'fixed',
+					visibility: successDelete ? 'visable' : 'hidden',
+					bottom: (theme) => theme.spacing(5),
+					left: (theme) => theme.spacing(50),
+				}}
+			>
+				Comment Deleted!
+			</Alert>
 			<Box
 				sx={{
 					display: 'grid',
@@ -63,17 +107,48 @@ export default function CommentList({ currentUser, selectedArticle }) {
 				autoComplete="off"
 			>
 				<TextField
-					onChange={buildComment}
+					error={error}
+					label={
+						error
+							? 'Comment must be at least 3 characters!'
+							: 'Add your comment!'
+					}
+					onChange={(e) => {
+						if (e.target.value.length === 0) {
+							setError(false);
+						}
+						setComment(e.target.value);
+					}}
+					InputProps={{
+						endAdornment: (
+							<Tooltip title="Clear comment">
+								<IconButton
+									sx={{
+										visibility: comment
+											? 'visible'
+											: 'hidden',
+									}}
+									onClick={() => {
+										setComment('');
+										setError(false);
+									}}
+								>
+									<ClearIcon />
+								</IconButton>
+							</Tooltip>
+						),
+					}}
+					value={comment}
 					sx={{
 						gridRow: '1/3',
 					}}
 					fullWidth
 					multiline
 					maxRows={4}
-					label="Add your comment!"
 				/>
 				<Button
 					variant="outlined"
+					color={error ? 'error' : 'primary'}
 					sx={{
 						gridColumn: '2/3',
 						gridRow: '1/3',
