@@ -22,3 +22,16 @@ npm install
 ```
 npm run dev
 ```
+
+## Version requirements
+
+##### Node.js 
+```
+v20.5.1
+```
+
+## Backend Repo
+
+```
+https://github.com/Proc31/nc-news
+```
