@@ -1,8 +1,24 @@
-# React + Vite
+# Cool Cat News
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Hosted Version: [cool-cat-news.netlify.app](cool-cat-news.netlify.app)
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Cool Cat News is a social news aggregation, web content rating, and discussion website. Think something along the lines of Reddit.
+
+Northcoders News has articles which are divided into topics. Each article has user curated ratings and can be up or down voted using the API. Users can also add comments about an article. Comments can also be up or down voted. A user can add comments and remove any comments which they have added.
+
+## Setup
+
+### 1. Clone repo
+```
+git clone https://github.com/Proc31/nc-news-fe
+```
+### 2. Install required packages
+```
+npm install
+```
+### 3. Run vite server
+```
+npm run dev
+```
