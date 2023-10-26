@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CommentList from './lists/CommentList';
 import { getSingleArticle } from '../utils';
-import Article from './Lists/list-items/Article';
+import Article from './lists/list-items/Article';
 import Loading from './page-items/Loading';
 import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
