@@ -9,7 +9,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export default function Article({ article }) {
 	const selectedArticle = article;
-	const [votes, setVotes] = useState(article.votes);
+	const [votes, setVotes] = useState(0);
 
 	function handleClick(num) {
 		num = Number(num);
@@ -23,6 +23,7 @@ export default function Article({ article }) {
 	return (
 		<>
 			<Box //Base box
+				mt={2}
 				sx={{
 					display: 'grid',
 					border: 1,
@@ -84,7 +85,10 @@ export default function Article({ article }) {
 						gridRow: '1/3',
 					}}
 				>
-					<Link to="/article" state={{ selectedArticle }}>
+					<Link
+						to={`/article/${selectedArticle.article_id}`}
+						state={{ selectedArticle }}
+					>
 						<Typography align="center" sx={{ fontSize: 28 }}>
 							{selectedArticle.title}
 						</Typography>
@@ -127,7 +131,7 @@ export default function Article({ article }) {
 					}}
 				>
 					<Typography sx={{ fontSize: 14 }}>
-						Created on: {formatTime(selectedArticle.created_at)}
+						Created On: {formatTime(selectedArticle.created_at)}
 					</Typography>
 				</Box>
 			</Box>

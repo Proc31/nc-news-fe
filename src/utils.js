@@ -15,10 +15,9 @@ export function getArticles(topic, searchParams) {
 	});
 }
 
-export function getArticleBody(article) {
-	const article_id = article.article_id;
+export function getSingleArticle(article_id) {
 	return api.get(`./articles/${article_id}`).then((response) => {
-		return response.data.article.body;
+		return response.data.article;
 	});
 }
 
@@ -28,8 +27,7 @@ export function getTopics() {
 	});
 }
 
-export function getComments(article) {
-	const article_id = article.article_id;
+export function getComments(article_id) {
 	return api.get(`./articles/${article_id}/comments`).then((response) => {
 		return response.data.comments;
 	});
@@ -48,12 +46,25 @@ export function postComment(body, article, user) {
 		});
 }
 
+export function deleteComment(comment) {
+	const comment_id = comment.comment_id;
+	return api.delete(`/comments/${comment_id}`);
+}
+
+export function incrementCommentVote(num, comment) {
+	const comment_id = comment.comment_id;
+	const voteChange = {
+		inc_votes: num,
+	};
+	return api.patch(`/comments/${comment_id}`, voteChange);
+}
+
 export function incrementVote(num, article) {
 	const article_id = article.article_id;
 	const voteChange = {
 		inc_votes: num,
 	};
-	return api.patch(`/articles/${article_id}`, voteChange);
+	return api.patch(`articles/${article_id}`, voteChange);
 }
 
 
@@ -61,3 +72,5 @@ export function formatTime (dateString) {
 	const options = { year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric' };
 	return new Date(dateString).toLocaleDateString('en-GB', options);
 };
+
+
