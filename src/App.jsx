@@ -5,6 +5,7 @@ import Articles from './components/Articles';
 import Topics from './components/Topics';
 import Profile from './components/Profile';
 import Users from './components/Users';
+import Error from './components/Error';
 import ArticleContents from './components/ArticleContents';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
 				<Route path="/topics" element={<Topics />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/users" element={<Users />} />
+				<Route path="*" element={<Error />} />
 			</Routes>
 		</div>
 	);
