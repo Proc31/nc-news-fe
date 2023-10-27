@@ -46,11 +46,11 @@ export default function BottomBar({
 		<Container maxWidth="xl">
 			<Toolbar disableGutters>
 				<Box sx={{ flexGrow: 1 }}>
-					<Typography>Total Articles: {articleCount}</Typography>
+					<Typography>Total Articles: {articleCount || 0}</Typography>
 				</Box>
 				<Box sx={{ flexGrow: 1, alignItems: 'center' }}>
 					<Pagination
-						count={pageCount}
+						count={pageCount || 0}
 						color="primary"
 						onClick={changePage}
 					/>

@@ -16,7 +16,7 @@ export default function TopBar({ searchParams, setSearchParams, topics }) {
 						component="a"
 						href="/"
 						sx={{
-							display: { xs: 'none', md: 'flex' },
+							display: 'flex',
 							fontFamily: 'monospace',
 							fontWeight: 700,
 							letterSpacing: '.5rem',

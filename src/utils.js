@@ -29,6 +29,14 @@ export function getTopics() {
 	});
 }
 
+export function postTopic(slug, description) {
+	const topic = {
+		slug: slug,
+		description: description,
+	};
+	return api.post('./topics', topic);
+}
+
 export function getComments(article_id) {
 	return api.get(`./articles/${article_id}/comments`).then((response) => {
 		return response.data.comments;

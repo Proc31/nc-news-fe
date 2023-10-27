@@ -18,7 +18,7 @@ export default function CommentList({ currentUser, selectedArticle }) {
 	const [commentList, setCommentList] = useState([]);
 	const [comment, setComment] = useState('');
 	const [error, setError] = useState(false);
-	const [successComment, setSucessComment] = useState(false);
+	const [successComment, setSuccessComment] = useState(false);
 	const [successDelete, setSuccessDelete] = useState(false);
 
 	useEffect(() => {
@@ -33,7 +33,7 @@ export default function CommentList({ currentUser, selectedArticle }) {
 				.then(() => {
 					setComment('');
 					setError(false);
-					setSucessComment(true);
+					setSuccessComment(true);
 					return getComments(article_id);
 				})
 				.then((response) => {
@@ -71,12 +71,12 @@ export default function CommentList({ currentUser, selectedArticle }) {
 		<>
 			<Alert
 				onClose={() => {
-					setSucessComment(false);
+					setSuccessComment(false);
 				}}
 				severity="success"
 				sx={{
 					position: 'fixed',
-					visibility: successComment ? 'visable' : 'hidden',
+					visibility: successComment ? 'visible' : 'hidden',
 					bottom: (theme) => theme.spacing(5),
 					left: (theme) => theme.spacing(50),
 				}}
@@ -90,7 +90,7 @@ export default function CommentList({ currentUser, selectedArticle }) {
 				severity="success"
 				sx={{
 					position: 'fixed',
-					visibility: successDelete ? 'visable' : 'hidden',
+					visibility: successDelete ? 'visible' : 'hidden',
 					bottom: (theme) => theme.spacing(5),
 					left: (theme) => theme.spacing(50),
 				}}
