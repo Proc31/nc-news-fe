@@ -60,7 +60,7 @@ export default function BottomBar({
 						<InputLabel>Articles Per Page</InputLabel>
 						<Select
 							label="Select Articles per Page"
-							value={searchParams.get('limit')}
+							value={searchParams.get('limit') || 10}
 							onChange={changeLimit}
 						>
 							<MenuItem value={5}>5</MenuItem>
