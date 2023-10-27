@@ -3,6 +3,7 @@ import Article from './list-items/Article';
 import Loading from '../page-items/Loading';
 import { getArticles } from '../../utils';
 import Stack from '@mui/material/Stack';
+import Error from '../page-items/Error';
 
 export default function ArticleList({
 	topic,
@@ -36,6 +37,8 @@ export default function ArticleList({
 
 	if (loading) {
 		return <Loading />;
+	} else if (articles.length === 0) {
+		return <Error type="page" />;
 	} else {
 		return (
 			<Stack spacing={1} alignItems="stretch" mx={4} my={1}>

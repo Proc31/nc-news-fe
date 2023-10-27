@@ -11,6 +11,10 @@ export default function Error({ type }) {
 		content = 'Article not found!';
 	}
 
+	if (type === 'page') {
+		content = 'No articles on this page!';
+	}
+
 	return (
 		<Box
 			mt={25}
