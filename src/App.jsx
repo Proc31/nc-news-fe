@@ -15,11 +15,11 @@ function App() {
 		avatar_url:
 			'https://vignette.wikia.nocookie.net/mrmen/images/7/7e/MrMen-Bump.png/revision/latest?cb=20180123225553',
 	});
-	let [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	return (
 		<div>
-			<Navbar currentUser={currentUser} />
+			<Navbar currentUser={currentUser} searchParams={searchParams} />
 			<Routes>
 				<Route
 					path="/"

@@ -20,13 +20,13 @@ export default function ArticleContents({ currentUser }) {
 				setSelectedArticle(response);
 				setLoading(false);
 			})
-			.catch((err) => {
+			.catch(() => {
 				setError(true);
 			});
 	}, []);
 
 	if (error) {
-		return <Error />;
+		return <Error type="article" />;
 	} else if (loading) {
 		return <Loading />;
 	} else {
