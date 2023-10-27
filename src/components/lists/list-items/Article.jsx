@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { formatTime, incrementVote } from '../../../utils';
 import { IconButton, Typography, Box } from '@mui/material';
@@ -6,15 +6,10 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export default function Article({ article }) {
-	const selectedArticle = article;
-	const [votes, setVotes] = useState(0);
-
-	useEffect(() => {
-		setVotes(selectedArticle.votes);
-	}, []);
+	const [votes, setVotes] = useState(article.votes);
 
 	function handleClick(num) {
-		incrementVote(num, selectedArticle).then(() => {
+		incrementVote(num, article).then(() => {
 			setVotes((votes) => {
 				return votes + num;
 			});
@@ -87,11 +82,11 @@ export default function Article({ article }) {
 					}}
 				>
 					<Link
-						to={`/article/${selectedArticle.article_id}`}
-						state={{ selectedArticle }}
+						to={`/article/${article.article_id}`}
+						state={{ article }}
 					>
 						<Typography align="center" sx={{ fontSize: 28 }}>
-							{selectedArticle.title}
+							{article.title}
 						</Typography>
 					</Link>
 				</Box>
@@ -105,7 +100,7 @@ export default function Article({ article }) {
 					}}
 				>
 					<Typography sx={{ fontSize: 14 }}>
-						Comments: {selectedArticle.comment_count}
+						Comments: {article.comment_count}
 					</Typography>
 				</Box>
 				<Box //Author box
@@ -118,7 +113,7 @@ export default function Article({ article }) {
 					}}
 				>
 					<Typography sx={{ fontSize: 14 }}>
-						User: {selectedArticle.author}
+						User: {article.author}
 					</Typography>
 				</Box>
 				<Box //Created at box
@@ -131,7 +126,7 @@ export default function Article({ article }) {
 					}}
 				>
 					<Typography sx={{ fontSize: 14 }}>
-						Created On: {formatTime(selectedArticle.created_at)}
+						Created On: {formatTime(article.created_at)}
 					</Typography>
 				</Box>
 			</Box>
