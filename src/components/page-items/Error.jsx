@@ -1,16 +1,13 @@
 import { Box, Button, Typography } from '@mui/material';
-import { getUrlArray } from '../../utils';
 
-export default function Error() {
+export default function Error({ type }) {
 	let content = 'Page not found!';
 
-	const url = getUrlArray();
-
-	if (url.length === 2 && url[0] === 'articles') {
+	if (type === 'topic') {
 		content = 'Topic not found!';
 	}
 
-	if (url.length === 2 && url[0] === 'article') {
+	if (type === 'article') {
 		content = 'Article not found!';
 	}
 

@@ -9,7 +9,7 @@ import {
 	AppBar,
 } from '@mui/material';
 
-export default function Navbar({ currentUser }) {
+export default function Navbar({ currentUser, searchParams }) {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">

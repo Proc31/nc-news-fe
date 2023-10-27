@@ -17,16 +17,13 @@ export default function Articles({ searchParams, setSearchParams }) {
 			order: 'desc',
 			sort_by: 'created_at',
 		});
-		getTopics()
-			.then((response) => {
-				return setTopics(response);
-			})
-			.then(() => {});
+		getTopics().then((response) => {
+			return setTopics(response);
+		});
 	}, []);
 
-
-	if (!error) {
-		return <Error />;
+	if (error) {
+		return <Error type="topic" />;
 	} else {
 		return (
 			<>
@@ -50,8 +47,8 @@ export default function Articles({ searchParams, setSearchParams }) {
 				</Toolbar>
 				<ArticleList
 					searchParams={searchParams}
-					setSearchParams={setSearchParams}
 					topic={topic}
+					setError={setError}
 				/>
 				<div>
 					<h2>Footer</h2>
@@ -60,3 +57,4 @@ export default function Articles({ searchParams, setSearchParams }) {
 		);
 	}
 }
+
