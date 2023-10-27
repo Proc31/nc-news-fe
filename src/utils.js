@@ -9,9 +9,11 @@ export function getArticles(topic, searchParams) {
 		topic: topic,
 		order: searchParams.get('order'),
 		sort_by: searchParams.get('sort_by'),
+		p: searchParams.get('p'),
+		limit: searchParams.get('limit'),
 	};
 	return api.get('./articles', { params }).then((response) => {
-		return response.data.articles;
+		return response.data;
 	});
 }
 

@@ -4,14 +4,20 @@ import Loading from '../page-items/Loading';
 import { getArticles } from '../../utils';
 import Stack from '@mui/material/Stack';
 
-export default function ArticleList({ topic, searchParams, setError }) {
+export default function ArticleList({
+	topic,
+	searchParams,
+	setError,
+	setArticleCount,
+}) {
 	const [articleList, setArticleList] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		getArticles(topic, searchParams)
 			.then((response) => {
-				setArticleList(response);
+				setArticleList(response.articles);
+				setArticleCount(response.total_count);
 				setError(false);
 				setLoading(false);
 			})
@@ -32,7 +38,7 @@ export default function ArticleList({ topic, searchParams, setError }) {
 		return <Loading />;
 	} else {
 		return (
-			<Stack spacing={1} alignItems="stretch" m={4}>
+			<Stack spacing={1} alignItems="stretch" mx={4} my={1}>
 				{articles}
 			</Stack>
 		);
