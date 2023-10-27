@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { formatTime, incrementVote } from '../../../utils';
 import { IconButton, Typography, Box } from '@mui/material';
@@ -8,6 +8,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 export default function Article({ article }) {
 	const selectedArticle = article;
 	const [votes, setVotes] = useState(0);
+
+	useEffect(() => {
+		setVotes(selectedArticle.votes);
+	}, [votes]);
 
 	function handleClick(num) {
 		num = Number(num);

@@ -9,6 +9,7 @@ import { Typography, Toolbar } from '@mui/material';
 
 export default function Articles({ searchParams, setSearchParams }) {
 	const [topics, setTopics] = useState([]);
+	const [error, setError] = useState(false);
 	const topic = useParams().topic;
 
 	useEffect(() => {
@@ -16,14 +17,13 @@ export default function Articles({ searchParams, setSearchParams }) {
 			order: 'desc',
 			sort_by: 'created_at',
 		});
-		getTopics().then((response) => {
-			setTopics(response);
-		});
+		getTopics()
+			.then((response) => {
+				return setTopics(response);
+			})
+			.then(() => {});
 	}, []);
 
-	const error = topics.some((sel) => {
-		return sel.slug === topic || !topic;
-	});
 
 	if (!error) {
 		return <Error />;
