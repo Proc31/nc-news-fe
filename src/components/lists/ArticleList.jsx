@@ -32,7 +32,7 @@ export default function ArticleList({ topic, searchParams, setError }) {
 		return <Loading />;
 	} else {
 		return (
-			<Stack spacing={4} alignItems="stretch" m={4}>
+			<Stack spacing={1} alignItems="stretch" m={4}>
 				{articles}
 			</Stack>
 		);
