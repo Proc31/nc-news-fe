@@ -60,11 +60,15 @@ export default function SortSelect({ setSearchParams, searchParams }) {
 			setSearchParams({
 				order: searchParams.get('order'),
 				sort_by: id[1],
+				p: searchParams.get('p'),
+				limit: searchParams.get('limit'),
 			});
 		} else if (id[0] === 'order' && id[1] !== undefined) {
 			setSearchParams({
 				order: id[1],
 				sort_by: searchParams.get('sort_by'),
+				p: searchParams.get('p'),
+				limit: searchParams.get('limit'),
 			});
 		}
 		setAnchorEl(null);
