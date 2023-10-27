@@ -11,10 +11,9 @@ export default function Article({ article }) {
 
 	useEffect(() => {
 		setVotes(selectedArticle.votes);
-	}, [votes]);
+	}, []);
 
 	function handleClick(num) {
-		num = Number(num);
 		incrementVote(num, selectedArticle).then(() => {
 			setVotes((votes) => {
 				return votes + num;
